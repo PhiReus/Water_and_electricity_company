@@ -54,7 +54,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 {{-- <h6 class="collapse-header">Custom Utilities:</h6> --}}
                 <a class="collapse-item" href="{{ route('projects.index') }}">Danh sách</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
+                <a class="collapse-item" href="{{ route('contractors.index') }}">Nhà thầu</a>
                 <a class="collapse-item" href="utilities-animation.html">Animations</a>
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
@@ -74,14 +74,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Bài Viết</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                {{-- <h6 class="collapse-header">Login Screens:</h6> --}}
+                <a class="collapse-item" href="{{ route('posts.index') }}">Danh sách</a>
+                <a class="collapse-item" href="{{ route('blogs.index') }}">Trang Blog</a>
+                <a class="collapse-item" href="{{ route('categories.index')}}">Danh mục</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>
@@ -114,7 +114,7 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+        <img class="sidebar-card-illustration mb-2" src="{{asset('asset/img/undraw_rocket.svg')}}" alt="...">
         <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div>

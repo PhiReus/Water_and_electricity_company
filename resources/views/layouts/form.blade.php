@@ -22,6 +22,8 @@
     <link href="{{ asset('asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.cssscript.com/demo/alert-confirm-toast-cute/style.css" />
     <script src="https://www.cssscript.com/demo/alert-confirm-toast-cute/cute-alert.js"></script>
+    <link href="{{ asset('asset/css/custom.css') }}" rel="stylesheet">
+
 
 
 </head>
@@ -47,10 +49,10 @@
                                         @yield('content')
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="{{ route('forgotPassword') }}">Quên mật khẩu?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="{{ route('register') }}">Đăng kí tài khoản!</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,14 +67,14 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('asset/js/sb-admin-2.min.js') }}"></script>
 
 </body>
 
@@ -83,6 +85,16 @@
     cuteToast({
         type: "info",
         message: "{{session('success')}}",
+        timer: 3000
+        })
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    cuteToast({
+        type: "error",
+        message: "{{session('error')}}",
         timer: 3000
         })
 </script>

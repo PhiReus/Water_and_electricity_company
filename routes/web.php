@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('includes.login');
+    return view('auth.login');
 });
 
 Route::group(['middleware' => 'checklogin'], function () {
@@ -37,9 +37,20 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('projects', \App\Http\Controllers\ProjectController::class);
     Route::resource('materials', \App\Http\Controllers\MaterialController::class);
     Route::resource('posts', \App\Http\Controllers\PostController::class);
+    Route::resource('blogs', \App\Http\Controllers\BlogController::class);
+
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::post('/categories/getCategory', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('categories.getCategory');
+
+    Route::resource('contractors', \App\Http\Controllers\ContractorController::class);
+
 });
 
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::get('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::post('/checkRegister', [App\Http\Controllers\AuthController::class, 'checkRegister'])->name('checkRegister');
+Route::get('/forgotPassword', [App\Http\Controllers\AuthController::class, 'forgotPassword'])->name('forgotPassword');
+Route::post('/checkForgotPassword', [App\Http\Controllers\AuthController::class, 'checkForgotPassword'])->name('checkForgotPassword');
 Route::post('/checkLogin', [App\Http\Controllers\AuthController::class, 'checkLogin'])->name('checkLogin');
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 

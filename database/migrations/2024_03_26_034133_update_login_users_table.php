@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->after('password');
             $table->string('address')->after('phone');
-            $table->string('image')->after('address');
-            $table->string('group_id')->after('image');
+            $table->string('image')->nullable()->after('address');
+            $table->unsignedBigInteger('group_id')->nullable()->after('image');
         });
     }
 

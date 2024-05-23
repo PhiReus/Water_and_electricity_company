@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->dateTime('start_day');
             $table->dateTime('end_day');
-            $table->string('type')->nullable();
+            $table->unsignedBigInteger('contractor_id')->nullable();
             $table->string('description')->nullable();
             $table->string('status');
             $table->string('image')->nullable();

@@ -94,6 +94,15 @@
                                 <p style="color:red">{{ $errors->first('description') }}</p>
                             @endif
                         </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="tf1">Nhà thầu<abbr name="Trường bắt buộc">*</abbr></label>
+                                <select id="contractor" name="contractor_id" class="form-control">
+                                <option selected>Vui lòng chọn</option>
+                                    @foreach ($contractors as $contractor)
+                                        <option value="{{ $contractor->id }}">{{ $contractor->name }}</option>
+                                    @endforeach
+                                </select>
+                        </div>
                     </div>
                     <div class="form-actions" style="display: flex; justify-content: right;">
                         <button class="btn btn-primary mr-1" type="submit">Lưu</button>

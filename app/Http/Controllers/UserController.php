@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index() {
 
-        $this->authorize('view', User::class);
+        // $this->authorize('view', User::class);
         $users = User::all();
         $groups = Group::all();
         $params = ['users' => $users, 'groups' => $groups];

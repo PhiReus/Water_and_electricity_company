@@ -2,7 +2,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Nhân viên</h1>
-        <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm create_employee">Thêm nhân
+        <button type="submit" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm create_employee">Thêm nhân
             viên</button>
     </div>
 
@@ -18,8 +18,8 @@
                             <th>STT</th>
                             <th>Tên</th>
                             <th>E-mail</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Số điện thoại</th>
+                            <th>Địa chỉ</th>
                             <th>Ảnh</th>
                             <th>Chức vụ</th>
                             <th>Hành động</th>
@@ -42,11 +42,11 @@
                                     <span class="sr-only">Edit</span></a> <a href="{{ route('user.edit', $user->id) }}" title="Chỉnh sửa"
                                         class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span
                                             class="sr-only">Remove</span></a>
-                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                                    <form id="delete-form-{{ $user->id }}" action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" title="Xóa" onclick="return confirm('Bạn có muốn xóa không ?')"
-                                            class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i>
+                                        <button type="button" title="Xóa" class="btn btn-sm btn-icon btn-secondary" onclick="confirmDelete({{ $user->id }})">
+                                            <i class="far fa-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>
