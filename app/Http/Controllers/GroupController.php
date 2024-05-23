@@ -59,7 +59,7 @@ class GroupController extends Controller
         try{
             return redirect()->route('groups.index')->with(['success' => 'Xóa chức vụ thành công!']);
         }catch(\Exception $e) {
-            return redirect()->back()->with(['error' => 'Xóa nhân viên thất bại!']);
+            return redirect()->back()->with(['error' => 'Xóa chức vụ thất bại!']);
         }
     }
 

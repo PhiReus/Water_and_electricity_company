@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contractor;
 use Illuminate\Http\Request;
 use App\Models\Project;
 
@@ -14,7 +15,8 @@ class ProjectController extends Controller
     }
 
     public function create() {
-        return view('projects.create');
+        $contractors = Contractor::all();
+        return view('projects.create', compact('contractors'));
     }
 
     public function store(Request $request) {
@@ -37,7 +39,9 @@ class ProjectController extends Controller
 
     public function edit($id) {
         $project = Project::find($id);
-        return view('projects.edit', compact('project'));
+        $contractors = Contractor::all();
+
+        return view('projects.edit', compact('project', 'contractors'));
     }
 
     public function update(Request $request, $id) {

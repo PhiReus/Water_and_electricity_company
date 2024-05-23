@@ -27,4 +27,8 @@ class Post extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function cotegory() {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
 }

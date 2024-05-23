@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Image;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 use App\Models\User;
-
 class PostController extends Controller
 {
     /**
@@ -66,7 +65,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
                 $image_name = $image->getClientOriginalName();
-                $path = $image->move(public_path('post'), $image_name);
+                $path = $image->move(public_path('images'), $image_name);
                 Image::create([
                     'post_id' => $post->id,
                     'image_path' => $image_name,
@@ -94,7 +93,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+        $users = User::all();
+
+        return view('posts.edit', compact('post', 'categories', 'users'));
     }
 
     /**
@@ -102,14 +105,53 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->all();
+        $post = Post::find($id);
+        $post->update($data);
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $image_name = $image->getClientOriginalName();
+                $path = $image->move(public_path('images'), $image_name);
+                Image::create([
+                    'post_id' => $post->id,
+                    'image_path' => $image_name,
+                ]);
+            }
+        }
+
+        // if($data['existing_images']) {
+        //     foreach($post->images as $image) {
+        //         if(!in_array($image->id, $data['existing_images'])) $image->delete();
+        //     }
+        // }
+
+        if($data['existing_images']) {
+           Image::where('post_id', $post->id)->whereNotIn('id', $data['existing_images'])->delete();
+        }
+
+        try{
+            return redirect()->route('posts.index')->with(['success' => 'Sửa bài bài viết thành công!']);
+        }catch(\Exception $e) {
+            return redirect()->back()->with(['error' => 'Vui lòng thử lại!']);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+    public function destroy($id) {
+        
+        $post = Post::find($id);
+        Post::destroy($id);
+
+        $image_id = $post->images->pluck('id')->toArray();
+        $image = Image::whereIn('id', $image_id)->delete();
+
+        try{
+            return redirect()->route('posts.index')->with(['success' => 'Xóa bài viết thành công!']);
+        }catch(\Exception $e) {
+            return redirect()->back()->with(['error' => 'Vui lòng thử lại!']);
+        }
     }
 }

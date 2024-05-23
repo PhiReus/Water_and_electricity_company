@@ -29,8 +29,10 @@
     <script src="{{ asset('asset/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="path/to/sweetalert2.min.js"></script>
+    {{-- <script src="{{ asset('asset/path/to/sweetalert2.min.js') }}"></script> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="{{ asset('asset/css/custom.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -60,7 +62,7 @@
                     <!-- Page Heading -->
                     {{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="#" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div> --}}
                     @yield('content')
@@ -114,19 +116,12 @@
     <script src="{{ asset('asset/js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('asset/vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-    <script>
-          var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                }
-            });
-    </script>
+    <script src="{{ asset('asset/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('asset/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="{{ asset('asset/js/helper.js') }}"></script>
 </body>
 </html>
 

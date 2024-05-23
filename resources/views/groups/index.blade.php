@@ -2,7 +2,7 @@
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Chức vụ</h1>
-        <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm create_group">Thêm chức vụ</button>
+        <button type="submit" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm create_group">Thêm chức vụ</button>
     </div>
 
     <div class="card shadow mb-4">
@@ -30,12 +30,12 @@
                                     <span class="sr-only">Edit</span></a> <button id="edit_group" group_id="{{ $group->id}}" title="Chỉnh sửa"
                                         class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i>
                                         <span class="sr-only">Remove</span></button>
-                                    <form action="{{ route('groups.destroy', $group->id) }}" method="POST" class="d-inline">
+                                    <form id="delete-form-{{ $group->id }}" action="{{ route('groups.destroy', $group->id) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" title="Xóa" onclick="return confirm('Bạn có muốn xóa không ?')"
-                                            class="btn btn-sm btn-icon btn-secondary"><i
-                                                class="far fa-trash-alt"></i></button>
+                                        <button type="button" title="Xóa" class="btn btn-sm btn-icon btn-secondary" onclick="confirmDelete({{ $group->id }})">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
                                         <a class="btn btn-sm btn-icon btn-secondary"
                                             href="{{ route('groups.show', $group->id) }}" title="Cấp quyền">
                                             <i class="fa-solid fa-user-tie"></i></a>
@@ -61,7 +61,6 @@
                 </div>
                 <div class="modal-body">
                     <form action="">
-                        <meta name="csrf-token" content="{{ csrf_token() }}">
                         <div class="form-group">
                             <label for="inputGroup">Chức vụ:</label>
                             <input type="text" class="form-control" id="inputPosition" name="group" placeholder="Nhập chức vụ">
@@ -114,14 +113,6 @@
                 e.preventDefault();
 
                 var group = $('input[name=group]').val();
-                var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    }
-                });
-
                 $.ajax({
                     url: "{{ route('groups.store') }}",
                     type: "POST",
@@ -161,13 +152,6 @@
         })
 
         function getGroup(groupId) {
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                }
-            });
-
             $.ajax({
                 url: "{{ route('groups.getGroup') }}",
                 type: "POST",
