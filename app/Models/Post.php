@@ -20,7 +20,7 @@ class Post extends Model
     }
 
     public function comments() {
-        return $this->belongsTo(Comment::class, 'post_id', 'id');
+        return $this->hasMany(Comment::class);
     }
 
     public function images()
@@ -31,4 +31,5 @@ class Post extends Model
     public function cotegory() {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
 }
