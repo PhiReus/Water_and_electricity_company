@@ -38,6 +38,7 @@ Route::group(['middleware' => 'checklogin'], function () {
     Route::resource('materials', \App\Http\Controllers\MaterialController::class);
     Route::resource('posts', \App\Http\Controllers\PostController::class);
     Route::resource('blogs', \App\Http\Controllers\BlogController::class);
+    Route::resource('comments', \App\Http\Controllers\CommentController::class);
 
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
     Route::post('/categories/getCategory', [App\Http\Controllers\CategoryController::class, 'getCategory'])->name('categories.getCategory');

@@ -24,6 +24,8 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ asset('blog/css/style.css') }}">
   <link href="{{ asset('asset/css/custom.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.cssscript.com/demo/alert-confirm-toast-cute/style.css" />
+  <script src="https://www.cssscript.com/demo/alert-confirm-toast-cute/cute-alert.js"></script>
 
 </head>
 
@@ -90,3 +92,4 @@
 
   </body>
   </html>
+
